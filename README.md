@@ -18,16 +18,6 @@ A full-stack delivery management app designed for small businesses to keep track
 - TailWind CSS
 - Chart.js
 
-## Installation
-```bash
-git clone https://github.com/OwenSctt/DeliverBase.git
-cd auth-job-tracker
-npm install
-npm start
-```
-
-
-
 # Things to add
 
 - Create a `.env` file in config folder and add the following as `key = value`
@@ -37,7 +27,13 @@ npm start
   - API_KEY = `your cloudinary api key`
   - API_SECRET = `your cloudinary api secret`
 
----
+    ## Installation
+```bash
+git clone https://github.com/OwenSctt/DeliverBase.git
+cd auth-job-tracker
+npm install
+npm start
+```
 
 ## Upcoming Features
 - More dynamic charts
