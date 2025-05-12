@@ -1,8 +1,32 @@
-# Install
+# DeliverBase
 
-`npm install`
+## Description
+A full-stack delivery management app designed for small businesses to keep track of and optimize delivery routes through data
 
----
+## Features
+- User registration & authentication
+- Secure session management
+- CRUD operations for Data Entry
+- Dynamic charts for easy data visualization 
+
+## Tech Stack
+- Node.js
+- Express.js
+- MongoDB
+- EJS Templates
+- Express-Session
+- TailWind CSS
+- Chart.js
+
+## Installation
+```bash
+git clone https://github.com/OwenSctt/DeliverBase.git
+cd auth-job-tracker
+npm install
+npm start
+```
+
+
 
 # Things to add
 
@@ -15,6 +39,7 @@
 
 ---
 
-# Run
-
-`npm start`
+## Upcoming Features
+- More dynamic charts
+- Easy list edit functionality
+- Completed Stops Sorting
