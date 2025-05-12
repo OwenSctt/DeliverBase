@@ -27,7 +27,7 @@ A full-stack delivery management app designed for small businesses to keep track
   - API_KEY = `your cloudinary api key`
   - API_SECRET = `your cloudinary api secret`
 
-    ## Installation
+## Installation
 ```bash
 git clone https://github.com/OwenSctt/DeliverBase.git
 cd auth-job-tracker
