@@ -29,7 +29,7 @@
           </div>
           <div class="mb-3">
             <label for="address" class="form-label">Address</label>
-            <input type="text" class="form-control" id="address" name="address" placeholder="123 main st" required>
+            <input type="text" class="form-control" id="address" name="address" placeholder="123 Main St Philadelphia,PA 19144" required>
           </div>
           <div class="mb-3">
             <label for="eTime" class="form-label">Estimated Time of Delivery</label>
@@ -69,7 +69,7 @@
           </div>
           <div class="mb-3">
             <label for="notes" class="form-label">Important Notes</label>
-            <input class="form-control" id="notes" name="notes" placeholder="e.g. (Has a dog, Deliver to red door on the side, etc.)"></input>
+            <input class="form-control" id="notes" name="notes" placeholder="E.G. (Has a dog, Deliver to red door on the side, etc.) (N/A if None)"></input>
           </div>
           <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Submit</button>
         </form>
@@ -149,4 +149,41 @@
     </div>
   </div>
 </div>
+<script>
+  const ctx = document.getElementById('offsetChart').getContext('2d');
+  const offset =  <%= averageTime %>
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Avg Offset'], 
+      datasets: [{
+        label: 'Average Delivery Offset (mins)',
+        data: [offset],
+        fill: false,
+        borderColor: offset >= 0 ? 'rgba(255, 99, 132, 1)' : 'rgba(75, 192, 192, 1)',
+        backgroundColor: offset >= 0 ? 'rgba(255, 99, 132, 0.6)' : 'rgba(75, 192, 192, 0.6)',
+        tension: 0.1,
+        pointRadius: 5
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: true
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Minutes'
+          }
+        }
+      }
+    }
+  });
+</script>
 <%- include('partials/footer') -%>
