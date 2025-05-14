@@ -1,37 +1,45 @@
 <%- include('partials/header') -%>
 
-<main class="min-h-screen flex justify-center items-center">
-    <section class="bg-white shadow-xl p-8 rounded-lg w-full max-w-md">
-        <% if (locals.messages.errors) { %>
-            <% locals.messages.errors.forEach(el => { %>
-                <div class="alert alert-danger"><%= el.msg %></div>
-            <% }) %>    
-        <% } %>
-        <% if (locals.messages.info) { %>
-            <% locals.messages.info.forEach(el => { %>
-                <div class="alert alert-info"><%= el.msg %></div>
-            <% }) %>    
-        <% } %>
-        <form action="/signup" method="POST">
-            <div class="mb-4">
-                <label for="userName" class="block text-lg font-medium text-gray-700">User Name</label>
-                <input type="text" class="w-full p-3 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" id="userName" name="userName">
-            </div>
-            <div class="mb-4">
-                <label for="exampleInputEmail1" class="block text-lg font-medium text-gray-700">Email address</label>
-                <input type="email" class="w-full p-3 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
-            </div>
-            <div class="mb-4">
-                <label for="password" class="block text-lg font-medium text-gray-700">Password</label>
-                <input type="password" class="w-full p-3 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" id="password" name="password">
-            </div>
-            <div class="mb-4">
-                <label for="confirmPassword" class="block text-lg font-medium text-gray-700">Confirm Password</label>
-                <input type="password" class="w-full p-3 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" id="confirmPassword" name="confirmPassword">
-            </div>
-            <button type="submit" class="w-full p-3 bg-green-400 text-white rounded-md font-bold hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-200">Sign Up</button>
-        </form>
-    </section>
-</main>
+<section class="flex min-h-screen">
+    <!-- Left Side: Form -->
+    <main class="flex items-center justify-center flex-1 p-8 bg-[#a6a29D]">
+        <section class="bg-white shadow-xl p-8 rounded-lg w-full max-w-md">
+            <% if (locals.messages.errors) { %>
+                <% locals.messages.errors.forEach(el => { %>
+                    <div class="alert alert-danger"><%= el.msg %></div>
+                <% }) %>    
+            <% } %>
+            <% if (locals.messages.info) { %>
+                <% locals.messages.info.forEach(el => { %>
+                    <div class="alert alert-info"><%= el.msg %></div>
+                <% }) %>    
+            <% } %>
+            <form action="/signup" method="POST">
+                <div class="mb-4">
+                    <label for="userName" class="block text-lg font-medium text-gray-700">User Name</label>
+                    <input type="text" class="w-full p-3 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" id="userName" name="userName">
+                </div>
+                <div class="mb-4">
+                    <label for="exampleInputEmail1" class="block text-lg font-medium text-gray-700">Email address</label>
+                    <input type="email" class="w-full p-3 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+                </div>
+                <div class="mb-4">
+                    <label for="password" class="block text-lg font-medium text-gray-700">Password</label>
+                    <input type="password" class="w-full p-3 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" id="password" name="password">
+                </div>
+                <div class="mb-4">
+                    <label for="confirmPassword" class="block text-lg font-medium text-gray-700">Confirm Password</label>
+                    <input type="password" class="w-full p-3 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" id="confirmPassword" name="confirmPassword">
+                </div>
+                <button type="submit" class="w-full p-3 text-white font-bold bg-[#f7bd03] hover:bg-[#a6a29D] hover:border-[#f7bd03] hover:text-white rounded-md font-bold focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-200">Sign Up</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Right Side -->
+    <div class="flex-1 bg-[url('/imgs/chartss.png')] bg-no-repeat bg-cover bg-center  items-center justify-center">
+        <h1 class="flex items-center justify-center text-xl">Sign Up and start managing your business today!</h1>
+    </div>
+</section>
 
 <%- include('partials/footer') -%>

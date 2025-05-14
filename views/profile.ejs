@@ -1,98 +1,100 @@
 <%- include('partials/header') -%>
-<div class="">
-  <div class="">
-      <nav class=" top-0 sticky  bg-white p-1 flex flex-col sm:flex-row sm:items-center sm:justify-between shadow">
-        <div class="text-sm bg-green-400 rounded px-4 py-2 ">
-          <p><strong>User Name:</strong> <%= user.userName.toUpperCase() %></p>
-          <p><strong>Email:</strong> <%= user.email.toUpperCase() %></p>
-        </div>    
-        <div class="flex gap-4 underline-offset-4">
-          <a href="#addAStop" class=" font-bold hover:text-white  bg-green-400  px-4 py-2 rounded hover:bg-green-700">Add A Stop</a>
-          <a href="#completedStops" class=" font-bold  hover:text-white bg-green-400 px-4 py-2 rounded hover:bg-green-700">Completed Stops</a>
-          <a href="#analytics" class=" font-bold  hover:text-white bg-green-400 px-4 py-2 rounded hover:bg-green-700">Analytics</a>
-        </div> 
-        <div>
-          <a href="/logout" class="bg-green-400 hover:text-white px-4 py-2 rounded hover:bg-green-700 font-bold">Logout</a>
-        </div>
-      </nav>
+<div class="flex bg-[#737373] ">
+  <!-- Sidebar -->
+  <aside class="w-64 bg-white  p-6 fixed h-full">
+    <h2 class="text-2xl font-bold mb-6">DeliverBase</h2>
+    <nav class="space-y-3">
+      <a href="#addAStop" class="block py-2 px-4 bg-[#f7bd03] hover:bg-[#eab740] rounded font-bold">Add A Stop</a>
+      <a href="#completedStops" class="block py-2 px-4 bg-[#f7bd03] hover:bg-[#eab740] rounded font-bold">Completed Stops</a>
+      <a href="#analytics" class="block py-2 px-4 bg-[#f7bd03] hover:bg-[#eab740] rounded font-bold">Analytics</a>
+      <a href="/logout" class="block py-2 px-4 bg-[#f7bd03] hover:bg-[#eab740] rounded font-bold">Log Out</a>
+    </nav>
+  </aside>
 
-      <!-- Add Post Form Section -->
-      <div class="flex flex-col p-2">
-      <div class="text-white p-5">
-        <h1 class="text-center text-4xl italic">DeliverBase</h1>
-        <h2 id="addAStop" class="uppercase font-bold text-3xl mb-1">Add a Stop</h2>
-        <h3 class="font-bold text-lg mb-3">Log completed stops here</h3>
-        <form action="/post/createPost" enctype="multipart/form-data" method="POST">
-          <div class="mb-3">
-            <label for="rname" class="form-label">Recipient Name</label>
-            <input type="text" class="form-control" id="rname" name="rname" placeholder="John Doe" required>
-          </div>
-          <div class="mb-3">
-            <label for="address" class="form-label">Address</label>
-            <input type="text" class="form-control" id="address" name="address" placeholder="123 Main St Philadelphia,PA 19144" required>
-          </div>
-          <div class="mb-3">
-            <label for="eTime" class="form-label">Estimated Time of Delivery</label>
-            <input type="time" class="form-control" id="eTime" name="eTime" required>
-          </div>
-          <div class="mb-3">
-            <label for="time" class="form-label">Actual Time of Delivery</label>
-            <input type="time" class="form-control" id="time" name="time" required>
-          </div>
-          <div class="mb-3">
-            <label for="packages" class="form-label">Total Packages Delivered</label>
-            <input type="number" class="form-control" id="packages" name="packages" required>
-          </div>
-          <div class="mb-3">
-            <label for="location" class="form-label">Location of Delivery</label>
-            <select class="form-control" id="location" name="location" required>
-              <option value="" disabled selected>Choose One</option>
-              <option value="Business">Business</option>
-              <option value="Residential">Residential</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label for="type" class="form-label">Drop-Off Location</label>
-            <select class="form-control" id="type" name="type" required>
-              <option value="" disabled selected>Select a location</option>
-              <option value="Front Door">Front Door</option>
-              <option value="Back Door">Back Door</option>
-              <option value="Side Door">Side Door</option>
-              <option value="Lobby">Lobby</option>
-              <option value="Mailroom">Mailroom</option>
-              <option value="Customer">Given To Customer</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label for="imageUpload" class="form-label">Delivery Picture</label>
-            <input type="file" class="form-control" id="imageUpload" name="file" required>
-          </div>
-          <div class="mb-3">
-            <label for="notes" class="form-label">Important Notes</label>
-            <input class="form-control" id="notes" name="notes" placeholder="E.G. (Has a dog, Deliver to red door on the side, etc.) (N/A if None)"></input>
-          </div>
-          <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Submit</button>
-        </form>
-        <div>
-          <h1 class="uppercase font-bold text-3xl text-white mt-5" id="analytics">analytics</h1>
-        <div class="bg-white text-black p-4 rounded shadow mt-4">
-          <h2 class="text-xl font-bold mb-2">Average Delivery Time</h2>
-            <canvas id="offsetChart" width="200" height="50"></canvas>
-            <p>Average delivery time is: <%= averageTime %> minutes (<%= averageTime > 0 ? 'Late' : 'Early' %>)</p>
-          </div>
-        </div>
+  <!-- Main content -->
+  <div class="ml-64 flex-1 flex flex-col">
+    <div class="flex flex-1">
+      <!-- Top section (Add a Stop + Analytics) -->
+      <div class="flex-1 p-4">
+        <!-- Add a Stop Form -->
+        <div class="p-5 text-white shadow-xl">
+          <h2 id="addAStop" class="uppercase font-bold text-3xl mb-1">Add a Stop</h2>
+          <h3 class="font-bold text-lg mb-3">Log completed stops here</h3>
+          <form action="/post/createPost" enctype="multipart/form-data" method="POST" class="space-y-3">
+            <div class="mb-3">
+              <label for="rname" class="form-label">Recipient Name</label>
+              <input type="text" class="form-control" id="rname" name="rname" placeholder="John Doe" required>
+            </div>
+            <div class="mb-3">
+              <label for="address" class="form-label">Address</label>
+              <input type="text" class="form-control" id="address" name="address" placeholder="123 Main St Philadelphia, PA 19144" required>
+            </div>
+            <div class="mb-3">
+              <label for="eTime" class="form-label">Estimated Time of Delivery</label>
+              <input type="time" class="form-control" id="eTime" name="eTime" required>
+            </div>
+            <div class="mb-3">
+              <label for="time" class="form-label">Actual Time of Delivery</label>
+              <input type="time" class="form-control" id="time" name="time" required>
+            </div>
+            <div class="mb-3">
+              <label for="packages" class="form-label">Total Packages Delivered</label>
+              <input type="number" class="form-control" id="packages" name="packages" required>
+            </div>
+            <div class="mb-3">
+              <label for="location" class="form-label">Location of Delivery</label>
+              <select class="form-control" id="location" name="location" required>
+                <option value="" disabled selected>Choose One</option>
+                <option value="Business">Business</option>
+                <option value="Residential">Residential</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="type" class="form-label">Drop-Off Location</label>
+              <select class="form-control" id="type" name="type" required>
+                <option value="" disabled selected>Select a location</option>
+                <option value="Front Door">Front Door</option>
+                <option value="Back Door">Back Door</option>
+                <option value="Side Door">Side Door</option>
+                <option value="Lobby">Lobby</option>
+                <option value="Mailroom">Mailroom</option>
+                <option value="Customer">Given To Customer</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="imageUpload" class="form-label">Delivery Picture</label>
+              <input type="file" class="form-control" id="imageUpload" name="file" required>
+            </div>
+            <div class="mb-3">
+              <label for="notes" class="form-label">Important Notes</label>
+              <input class="form-control" id="notes" name="notes" placeholder="E.G. (Has a dog, Deliver to red door on the side, etc.) (N/A if None)">
+            </div>
+            <button type="submit" class="bg-[#f7bd03] hover:bg-[#a6a29d] text-black font-bold py-2 px-4 rounded">Submit</button>
+          </form>
         </div>
       </div>
-      
 
-      <div class="stops p-5" >
-      <h2 id="completedStops" class="uppercase font-bold text-3xl text-white">Completed Stops</h2>
+      <div class="flex-1 p-4 shadow-xl ">
+        <!-- Analytics -->
+        <h1 class="uppercase font-bold text-3xl text-white mt-5" id="analytics">Analytics</h1>
+        <div class="text-white p-4 rounded shadow-xl mt-4 bg-[#a6a29D]">
+          <h2 class="text-xl font-bold mb-2">Average Delivery Time</h2>
+          <canvas id="offsetChart" width="200" height="50" class="w-full h-auto"></canvas>
+          <p>Average delivery time is: <%= averageTime %> minutes (<%= averageTime > 0 ? 'Late' : 'Early' %>)</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom section (Completed Stops) -->
+    <div class="p-5 mt-5">
+      <h2 id="completedStops" class="uppercase font-bold text-3xl text-white ">Completed Stops</h2>
       <h3 class="font-bold text-lg mb-3 text-white">See a history of all past deliveries</h3>
+
       <!-- Posts Section -->
-      <ul class="completedStops flex flex-wrap   gap-3">
+      <ul class="completedStops flex flex-wrap gap-3">
         <% for(var i = 0; i < posts.length; i++) { %>
-          <li class="completedStop bg-white shadow  p-3 rounded-lg mb-4">
-            <div class="">
+          <li class="completedStop bg-white shadow p-3 rounded-lg mb-4">
+            <div>
               <div class="flex flex-col">
                 <span class="font-bold">Recipient Name:</span>
                 <span class="uppercase"><%= posts[i].rname %></span>
@@ -102,11 +104,11 @@
                 <span class="uppercase"><%= posts[i].address %></span>
               </div>
               <div class="flex flex-col">
-                <span class="font-bold"> Estimated Time of Delivery:</span>
+                <span class="font-bold">Estimated Time of Delivery:</span>
                 <span class="uppercase"><%= posts[i].eTime %></span>
               </div>
               <div class="flex flex-col">
-                <span class="font-bold"> Actual Time of Delivery:</span>
+                <span class="font-bold">Actual Time of Delivery:</span>
                 <span class="uppercase"><%= posts[i].time %></span>
               </div>
               <div class="flex flex-col">
@@ -119,7 +121,7 @@
               </div>
               <div class="flex flex-col">
                 <span class="font-bold">Location of Delivery:</span>
-                <span class="uppercase "><%= posts[i].location %></span>
+                <span class="uppercase"><%= posts[i].location %></span>
               </div>
               <div class="flex flex-col">
                 <span class="font-bold">Drop-Off Location:</span>
@@ -128,27 +130,28 @@
               <div class="flex flex-col">
                 <span class="font-bold">Important Notes:</span>
                 <span class="uppercase"><%= posts[i].notes %></span>
-              </div>             
+              </div>
               <div>
                 <details class="mt-2">
                   <summary class="cursor-pointer font-bold">Delivery Picture</summary>
                   <img src="<%= posts[i].image %>" alt="Delivery Image" class="mt-2 rounded-lg w-48 h-48 object-cover">
                 </details>
-              </div>             
+              </div>
               <div>
                 <% if (posts[i].user.toString() === user._id.toString()) { %>
                   <form action="/post/deletePost/<%= posts[i]._id %>?_method=DELETE" method="POST">
-                    <button class="btn btn-danger mt-2" type="submit">Remove From List</button>
+                    <button class="bg-[#f7bd03] hover:bg-[#a6a29d] text-black font-bold mt-2 px-4 py-1 rounded">Remove From List</button>
                   </form>
                 <% } %>
               </div>
             </div>
           </li>
         <% } %>
-        </ul>
+      </ul>
     </div>
   </div>
 </div>
+
 <script>
   const ctx = document.getElementById('offsetChart').getContext('2d');
   const offset =  <%= averageTime %>
@@ -186,4 +189,5 @@
     }
   });
 </script>
+
 <%- include('partials/footer') -%>

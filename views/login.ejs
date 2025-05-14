@@ -1,42 +1,76 @@
 <%- include('partials/header') -%>
+<main>
+    
+<section class="h-screen">
+        <% if (locals.messages && locals.messages.errors) { %> 
+          <% locals.messages.errors.forEach(el => { %>
+            <div class="alert alert-danger"><%= el.msg %></div>
+          <% }) %> 
+        <% } %> 
+        
+        <% if (locals.messages && locals.messages.info) { %> 
+          <% locals.messages.info.forEach(el => { %>
+            <div class="alert alert-info"><%= el.msg %></div>
+          <% }) %> 
+        <% } %>
+        
+    <div class="h-full">
+        <div class="g-6 flex h-full flex-wrap items-center justify-center text-neutral-800">
+            <div class="h-full w-full">
+                <div class="h-full block bg-white shadow-lg">
+                    <div class="h-full g-0 lg:flex lg:flex-wrap">
+                        <div class="px-4 md:px-0 lg:w-6/12 flex">
+                            <div class="md:mx-6 md:p-12 my-auto w-full">
+                                <div class="flex py-50">
+                                    <img src="./imgs/pac.png
+                                    " class="max-w-[400px] w-full mx-auto" alt="">
+                                </div>
+                                <form action="/login" method="POST">
+                                    <p class="text-xs mb-4">Please login to your account</p>
+                                    <div class="relative mb-4" data-te-input-wrapper-init>
+                                        <input type="email"
+                                            class="peer block min-h-[auto] w-full rounded border bg-transparent px-3 py-[0.32rem] leading-[1.6]"
+                                            type="email" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+                                    </div>
+                                    <div class="relative mb-4" data-te-input-wrapper-init>
+                                        <input type="password"
+                                        class="peer block min-h-[auto] w-full rounded border bg-transparent px-3 py-[0.32rem]"
+                                        placeholder="Password" type="password" id="exampleInputPassword1" name="password">
+                                    </div>
+                                    <div class="mb-12 pb-1 pt-1 text-center">
 
-<main class="min-h-screen flex justify-center items-center">
-  <section class="bg-white shadow-xl p-8 rounded-lg w-full max-w-md">
-    <% if (locals.messages && locals.messages.errors) { %> 
-      <% locals.messages.errors.forEach(el => { %>
-        <div class="alert alert-danger"><%= el.msg %></div>
-      <% }) %> 
-    <% } %> 
-    
-    <% if (locals.messages && locals.messages.info) { %> 
-      <% locals.messages.info.forEach(el => { %>
-        <div class="alert alert-info"><%= el.msg %></div>
-      <% }) %> 
-    <% } %>
-    
-    <form action="/login" method="POST">
-      <div class="mb-4">
-        <label for="exampleInputEmail1" class="text-lg font-medium">Email address</label>
-        <input
-          type="email"
-          class="w-full p-3 border rounded-md shadow-sm"
-          id="exampleInputEmail1"
-          aria-describedby="emailHelp"
-          name="email"
-        />
-      </div>
-      <div class="mb-4">
-        <label for="exampleInputPassword1" class="block text-lg font-medium ">Password</label>
-        <input
-          type="password"
-          class="w-full p-3 border rounded-md shadow-sm"
-          id="exampleInputPassword1"
-          name="password"
-        />
-      </div>
-      <button type="submit" class="w-full p-3 bg-green-400 text-white rounded-md hover:bg-green-700 font-bold">Login</button>
-    </form>
-  </section>
+                                        <button
+                                            class="inline-block w-full transition ease-in-out delay-150 border-2 border-[#a6a29D] mb-6 py-2 px-10 rounded-full text-white font-bold bg-[#f7bd03]   hover:bg-[#a6a29D] hover:border-[#f7bd03] hover:text-white text-xl" type="submit">Log In</button>
+                                    </div>
+                                </form>
+                                    <div class="flex items-center justify-between pb-6">
+                                        <p class="text-xs">Don't have an account?</p>
+                                        <a type="button"
+                                            class="inline-block border-2 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal  transition duration-150 ease-in-out  hover:bg-opacity-10  focus:outline-none focus:ring-0 active:border-danger-700 active:text-danger-700  hover:bg-[#595956] hover:border-[#f7bd03] rounded-full border-[#a6a29D] "
+                                            data-te-ripple-init data-te-ripple-color="light" href="/signup">
+                                            Sign Up
+                                    </a>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center lg:w-6/12 bg-[#a6a29D]">
+                            <div class="px-4 py-6 text-white md:mx-6 md:p-12">
+                                <h4 class="mb-6 text-3xl md:text-6xl font-semibold">
+                                    Welcome To DeliverBase
+                                </h4>
+                                <p>
+                                    The best way for small businesses to log, manage, and refine their deliveries. We use state-of-the-art metrics to analyze your company's delivery patterns and highlight areas for improvement. Tired of not knowing what's slowing you down? <a class="text-[#f7bd03]" href="/signup">Sign up</a> and get started today!
+
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 </main>
 
 <%- include('partials/footer') -%>
